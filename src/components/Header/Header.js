@@ -1,29 +1,28 @@
-import { useState } from 'react';
-import DisplayIcon from '../../assets/Display.svg';
-import DownIcon from '../../assets/down.svg';
-import { GROUP_BY, SORT_BY } from '../../constants';
-
+import { useState } from "react";
+import DisplayIcon from "../../assets/Display.svg";
+import DownIcon from "../../assets/down.svg";
+import { GROUP_BY, SORT_BY } from "../../constants";
 
 const Header = ({ onDisplayChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [grouping, setGrouping] = useState(() => {
-    return localStorage.getItem('grouping') || GROUP_BY.STATUS;
+    return localStorage.getItem("grouping") || GROUP_BY.STATUS;
   });
   const [sorting, setSorting] = useState(() => {
-    return localStorage.getItem('sorting') || SORT_BY.PRIORITY;
+    return localStorage.getItem("sorting") || SORT_BY.PRIORITY;
   });
 
   const handleGroupingChange = (e) => {
     const newGrouping = e.target.value;
     setGrouping(newGrouping);
-    localStorage.setItem('grouping', newGrouping);
+    localStorage.setItem("grouping", newGrouping);
     onDisplayChange(newGrouping, sorting);
   };
 
   const handleSortingChange = (e) => {
     const newSorting = e.target.value;
     setSorting(newSorting);
-    localStorage.setItem('sorting', newSorting);
+    localStorage.setItem("sorting", newSorting);
     onDisplayChange(grouping, newSorting);
   };
 
@@ -45,7 +44,7 @@ const Header = ({ onDisplayChange }) => {
               <option value={GROUP_BY.PRIORITY}>Priority</option>
             </select>
           </div>
-          
+
           <div className="option-group">
             <label>Ordering</label>
             <select value={sorting} onChange={handleSortingChange}>

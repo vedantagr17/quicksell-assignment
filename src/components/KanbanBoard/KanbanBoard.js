@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../Header/Header';
-import Card from '../Card/Card';
-import IconWrapper from '../IconWrapper/IconWrapper';
-import { GROUP_BY, SORT_BY, STATUS_ORDER, PRIORITY_MAP, STATUS_MAP } from '../../constants';
-import AddIcon from '../../assets/add.svg';
-import MenuIcon from '../../assets/3 dot menu.svg';
+import React, { useState, useEffect } from "react";
+import Header from "../Header/Header";
+import Card from "../Card/Card";
+import IconWrapper from "../IconWrapper/IconWrapper";
+import {
+  GROUP_BY,
+  SORT_BY,
+  STATUS_ORDER,
+  PRIORITY_MAP,
+  STATUS_MAP,
+} from "../../constants";
+import AddIcon from "../../assets/add.svg";
+import MenuIcon from "../../assets/3 dot menu.svg";
 
 const fetchData = async () => {
   try {
-    const response = await fetch('https://api.quicksell.co/v1/internal/frontend-assignment');
+    const response = await fetch(
+      "https://api.quicksell.co/v1/internal/frontend-assignment"
+    );
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     return null;
   }
 };
@@ -20,8 +28,12 @@ const fetchData = async () => {
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState([]);
   const [users, setUsers] = useState([]);
-  const [grouping, setGrouping] = useState(localStorage.getItem('grouping') || GROUP_BY.STATUS);
-  const [sorting, setSorting] = useState(localStorage.getItem('sorting') || SORT_BY.PRIORITY);
+  const [grouping, setGrouping] = useState(
+    localStorage.getItem("grouping") || GROUP_BY.STATUS
+  );
+  const [sorting, setSorting] = useState(
+    localStorage.getItem("sorting") || SORT_BY.PRIORITY
+  );
 
   useEffect(() => {
     const loadData = async () => {
@@ -58,7 +70,7 @@ const KanbanBoard = () => {
         return users
           .slice()
           .sort((a, b) => a.name.localeCompare(b.name))
-          .map(user => user.id);
+          .map((user) => user.id);
       default:
         return [];
     }
@@ -68,33 +80,33 @@ const KanbanBoard = () => {
     let groups = {};
 
     if (grouping === GROUP_BY.STATUS) {
-      STATUS_ORDER.forEach(status => {
+      STATUS_ORDER.forEach((status) => {
         groups[status] = [];
       });
-      tickets.forEach(ticket => {
+      tickets.forEach((ticket) => {
         if (groups[ticket.status]) {
           groups[ticket.status].push(ticket);
         }
       });
     } else if (grouping === GROUP_BY.USER) {
-      users.forEach(user => {
+      users.forEach((user) => {
         groups[user.id] = { tickets: [], user: user };
       });
-      tickets.forEach(ticket => {
+      tickets.forEach((ticket) => {
         if (groups[ticket.userId]) {
           groups[ticket.userId].tickets.push(ticket);
         }
       });
     } else if (grouping === GROUP_BY.PRIORITY) {
-      Object.keys(PRIORITY_MAP).forEach(priority => {
+      Object.keys(PRIORITY_MAP).forEach((priority) => {
         groups[priority] = [];
       });
-      tickets.forEach(ticket => {
+      tickets.forEach((ticket) => {
         groups[ticket.priority].push(ticket);
       });
     }
 
-    Object.keys(groups).forEach(key => {
+    Object.keys(groups).forEach((key) => {
       if (grouping === GROUP_BY.USER) {
         groups[key].tickets = sortTickets(groups[key].tickets);
       } else {
@@ -108,72 +120,88 @@ const KanbanBoard = () => {
   const renderGroups = () => {
     const groups = groupTickets();
     const order = getGroupOrder(grouping);
-    
-    return order.map(key => {
-      const value = groups[key] || [];
-      const ticketsCount = grouping === GROUP_BY.USER ? 
-        (groups[key]?.tickets?.length || 0) : 
-        (groups[key]?.length || 0);
 
-      if (grouping === GROUP_BY.USER && !groups[key]) {
-        return null;
-      }
+    return order
+      .map((key) => {
+        const value = groups[key] || [];
+        const ticketsCount =
+          grouping === GROUP_BY.USER
+            ? groups[key]?.tickets?.length || 0
+            : groups[key]?.length || 0;
 
-      return (
-        <div key={key} className="kanban-column">
+        if (grouping === GROUP_BY.USER && !groups[key]) {
+          return null;
+        }
 
-          <div className="column-header">
+        return (
+          <div key={key} className="kanban-column">
+            <div className="column-header">
+              {grouping === GROUP_BY.STATUS && (
+                <>
+                  <IconWrapper IconComponent={STATUS_MAP[key].icon} />
+                  <span>{STATUS_MAP[key].label}</span>
+                </>
+              )}
 
-            {grouping === GROUP_BY.STATUS && (
-              <>
-                <IconWrapper IconComponent={STATUS_MAP[key].icon} />
-                <span>{STATUS_MAP[key].label}</span>
-              </>
-            )}
+              {grouping === GROUP_BY.PRIORITY && (
+                <>
+                  <IconWrapper IconComponent={PRIORITY_MAP[key].icon} />
+                  <span>{PRIORITY_MAP[key].label}</span>
+                </>
+              )}
 
-            {grouping === GROUP_BY.PRIORITY && (
-              <>
-                <IconWrapper IconComponent={PRIORITY_MAP[key].icon} />
-                <span>{PRIORITY_MAP[key].label}</span>
-              </>
-            )}
+              {grouping === GROUP_BY.USER && (
+                <>
+                  <div className="user-avatar">
+                    {value.user.name.charAt(0)}
+                    <span
+                      className={`status-dot ${
+                        value.user.available ? "available" : ""
+                      }`}
+                    ></span>
+                  </div>
+                  <span>{value.user.name}</span>
+                </>
+              )}
 
-            {grouping === GROUP_BY.USER && (
-              <>
-                <div className="user-avatar">
-                  {value.user.name.charAt(0)}
-                  <span className={`status-dot ${value.user.available ? 'available' : ''}`}></span>
-                </div>
-                <span>{value.user.name}</span>
-              </>
-            )}
+              <span className="ticket-count">{ticketsCount}</span>
 
-            <span className="ticket-count">{ticketsCount}</span>
+              {!(grouping === GROUP_BY.STATUS && key === "Cancelled") && (
+                <>
+                  <img
+                    src={AddIcon}
+                    alt="Add"
+                    style={{ width: "22px", height: "22px", opacity: 0.7}}
+                  />
+                  <img
+                    src={MenuIcon}
+                    alt="Menu"
+                    style={{ width: "22px", height: "22px", opacity: 0.7}}
+                  />
+                </>
+              )}
+            </div>
 
-
-            {!(grouping === GROUP_BY.STATUS && key === 'Cancelled') && (
-              <>
-                <img src={AddIcon} alt="Add" style={{ width: '22px', height: '22px', opacity:0.7}} />
-<img src={MenuIcon} alt="Menu" style={{ width: '22px', height: '22px' , opacity:0.7 }} />
-
-              </>
-            )}
-
+            <div className="column-content">
+              {(grouping === GROUP_BY.USER ? value.tickets : value).map(
+                (ticket) => (
+                  <Card
+                    key={ticket.id}
+                    ticket={ticket}
+                    user={
+                      grouping !== GROUP_BY.USER
+                        ? users.find((u) => u.id === ticket.userId)
+                        : null
+                    }
+                    groupBy={grouping}
+                  />
+                )
+              )}
+            </div>
           </div>
-
-          <div className="column-content">
-            {(grouping === GROUP_BY.USER ? value.tickets : value).map(ticket => (
-              <Card
-                key={ticket.id}
-                ticket={ticket}
-                user={grouping !== GROUP_BY.USER ? users.find(u => u.id === ticket.userId) : null}
-                groupBy={grouping}
-              />
-            ))}
-          </div>
-        </div>
-      );
-    }).filter(Boolean);
+        );
+      })
+      .filter(Boolean);
   };
 
   return (

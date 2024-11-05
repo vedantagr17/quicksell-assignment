@@ -30,8 +30,6 @@
 
 .display-options {
     position: absolute;
-    /* top: calc(100% + 8px); */
-    /* top : 20px; */
     left: 20;
     background: white;
     padding: 16px;
@@ -40,7 +38,6 @@
     z-index: 1000;
     min-width: 300px;
     border: 1px solid #e6e7e9;
-    /* margin-right: 1?px; */
 }
 
 .option-group {
@@ -91,30 +88,18 @@
 
 
 /* Kanban Board */
-/* .kanban-container { */
-    /* padding: 20px; */
-    /* min-height: 100vh; */
-    /* background-color: #f4f5f8; */
-/* } */
-
 .kanban-board {
     display: flex;
-    gap: 36px; /* Reduced gap for cleaner look */
+    gap: 36px; 
     overflow-x: auto;
     padding-left: 20px;
     background-color: #f4f5f8;
     padding-top: 20px;
     overflow-x: scroll;
-    /* margin-bottom: px; */
     padding-bottom: 20px;
     padding-right: 20px;
     scrollbar-width: none;
-
 }
-
-/* .ico-style{
-    font-size: 13px;
-} */
 
 .kanban-column {
     flex: 0 0 320px;
@@ -125,7 +110,7 @@
     align-items: center;
     gap: 8px;
     padding: 8px 8px 24px;
-    color: #555555; /* Darker shade for contrast */
+    color: #555555;
     font-weight: 500;
 }
 
@@ -141,18 +126,12 @@
 }
 
 
-/* Ticket Card */
+/* Card */
 .ticket-card1 {
     display: flex;
     flex-direction: column;
     background: white;
     border-radius: 6px;
-    /* conditional */
-    /* padding-top: 16px;
-    padding-bottom: 8px;
-
-    padding-right: 16px;
-    padding-left: 16px; */
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border: 1px solid rgba(0,0,0,0.08);
     height: 100px; 
@@ -180,16 +159,12 @@
 
 .ticket-title {
     display: flex;
-    /* flex-direction: row;  */
-    /* align-items: baseline;  */
-    gap: 12px; /* Equivalent to gap-x-3 in Tailwind (12px) */
+    gap: 12px;
     
     color: #373737;
     font-size: 16px;
     font-weight: 600;
     line-height: 1.4;
-    /* border-radius: 8px; */
-    /* border-color: red; */
   }
   
 .tictitle-style{
@@ -215,7 +190,7 @@ text-overflow: ellipsis;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 10px; /* Default padding */
+    padding: 6px 10px; 
     border-radius: 6px;
     font-size: 14px;
     color: #989ca4;
@@ -228,7 +203,7 @@ text-overflow: ellipsis;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 10px; /* Default padding */
+    padding: 4px 10px;
     border-radius: 6px;
     font-size: 14px;
     color: #989ca4;
@@ -236,10 +211,9 @@ text-overflow: ellipsis;
     font-weight: 500;
 }
 
-/* Modify styles for no icon condition */
 .feature-tag.no-icon {
-    padding: 6px 10px; /* Adjust padding as needed for no icon */
-    border: none; /* Remove border when no icon is displayed */
+    padding: 6px 10px;
+    border: none;
 }
 
 
@@ -254,11 +228,11 @@ text-overflow: ellipsis;
     font-size: 12px;
     color: #595959;
     position: relative;
-    border: 2px solid #e6e7e9; /* Added border for better contrast */
+    border: 2px solid #e6e7e9;
 }
 
 .status-dot {
-    width: 9px; /* Increased size */
+    width: 9px;
     height: 9px;
     border-radius: 50%;
     background: #ddd;
@@ -276,7 +250,6 @@ text-overflow: ellipsis;
     margin-right: auto;
     padding: 2px 8px;
     border-radius: 16px;
-    /* font-size: 13px; */
     color: #6B6F76;
 }
 
@@ -295,6 +268,6 @@ text-overflow: ellipsis;
 
 .icon-style {
     display: flex;
-    align-items: baseline; /* Align icon with text baseline */
+    align-items: baseline;
     margin-top: 6px;
 }
