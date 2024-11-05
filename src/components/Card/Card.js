@@ -5,7 +5,30 @@ import { GROUP_BY, PRIORITY_MAP, STATUS_MAP } from '../../constants';
 
 const Card = ({ ticket, user, groupBy }) => {
   return (
-    <div className="ticket-card">
+    <div className="ticket-card"  style={{
+      display: 'flex',
+      flexDirection: 'column',
+      background: 'white',
+      borderRadius: '6px',
+      paddingTop:
+        groupBy === GROUP_BY.STATUS
+          ? '14px'
+          : groupBy === GROUP_BY.USER
+          ? '12px'
+          : '12px', // Default for other cases
+      paddingBottom:
+        groupBy === GROUP_BY.PRIORITY
+          ? '7px'
+          : groupBy === GROUP_BY.STATUS
+          ? '7px'
+          : '1px', // Default for other cases
+      paddingLeft: '20px',
+      paddingRight: '20px',
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      border: '1px solid rgba(0, 0, 0, 0.08)',
+      height: '100px',
+      overflow: 'hidden'
+    }}>
 
       <div className="ticket-header">
         <div className="ticket-id">{ticket.id}</div>

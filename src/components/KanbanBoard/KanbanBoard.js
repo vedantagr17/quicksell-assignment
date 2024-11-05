@@ -153,8 +153,9 @@ const KanbanBoard = () => {
 
             {!(grouping === GROUP_BY.STATUS && key === 'Cancelled') && (
               <>
-                <img src={AddIcon} alt="Add" />
-                <img src={MenuIcon} alt="Menu" />
+                <img src={AddIcon} alt="Add" style={{ width: '22px', height: '22px', opacity:0.7}} />
+<img src={MenuIcon} alt="Menu" style={{ width: '22px', height: '22px' , opacity:0.7 }} />
+
               </>
             )}
 

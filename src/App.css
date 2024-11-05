@@ -142,22 +142,27 @@
 
 
 /* Ticket Card */
-.ticket-card {
+.ticket-card1 {
     display: flex;
     flex-direction: column;
     background: white;
     border-radius: 6px;
-    padding-top: 16px;
-    padding-right: 16px;
+    /* conditional */
+    /* padding-top: 16px;
     padding-bottom: 8px;
-    padding-left: 16px;
+
+    padding-right: 16px;
+    padding-left: 16px; */
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border: 1px solid rgba(0,0,0,0.08);
-    height: 100px; /* Set to desired fixed height */
-    overflow: hidden; /* Hide any overflowing content */
+    height: 100px; 
+    overflow: hidden; 
 }
 
-
+.ico-img{
+    height: 50px;
+    width: 50px;
+}
 
 .ticket-header {
     display: flex;
