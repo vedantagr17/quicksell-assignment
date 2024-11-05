@@ -192,7 +192,7 @@ margin-bottom: 4px;
 .ticket-footer {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 6px;
     align-items: center;
     margin-top: 4px;
 }
@@ -201,12 +201,20 @@ margin-bottom: 4px;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 10px; /* Adjusted padding */
+    padding: 6px 10px; /* Default padding */
     border-radius: 6px;
-    font-size: 13px;
-    color: #6B6F76;
-    border: 1px solid #dedede;
+    font-size: 14px;
+    color: #989ca4;
+    border: 1px solid #ececec;
+    font-weight: 500;
 }
+
+/* Modify styles for no icon condition */
+.feature-tag.no-icon {
+    padding: 6px 10px; /* Adjust padding as needed for no icon */
+    border: none; /* Remove border when no icon is displayed */
+}
+
 
 .user-avatar {
     width: 24px;

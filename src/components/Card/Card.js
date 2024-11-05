@@ -45,21 +45,39 @@ const Card = ({ ticket, user, groupBy }) => {
       {/* footer */}
       <div className="ticket-footer">
 
-        {ticket.tag.map((tag, index) => (
+        {/* {ticket.tag.map((tag, index) => (
           <div key={index} className="feature-tag">
             {(groupBy === GROUP_BY.STATUS || groupBy === GROUP_BY.USER) && (
-              <IconWrapper 
+             <IconWrapper 
               IconComponent={ticket.priority === 4 ? PRIORITY_MAP[5].icon : PRIORITY_MAP[ticket.priority].icon} 
               className="mr-2"
               />
             )}
           </div>
-        ))}
+        ))} */}
+
+{ticket.tag.map((tag, index) => (
+    (groupBy === GROUP_BY.STATUS || groupBy === GROUP_BY.USER) && (
+        <div key={index} className="feature-tag">
+            <IconWrapper 
+                IconComponent={ticket.priority === 4 ? PRIORITY_MAP[5].icon : PRIORITY_MAP[ticket.priority].icon} 
+                className="mr-2"
+            />
+            {/* {tag} */}
+        </div>
+    )
+))}
+
+
 
         {ticket.tag.map((tag, index) => (
           <div key={index} className="feature-tag">
-            <Circle size={8} fill="grey" />
-            {tag}
+             <>
+            <Circle size={12} fill="#a3a7af" />
+          
+           {tag}
+            </>
+
           </div>
         ))}
 
