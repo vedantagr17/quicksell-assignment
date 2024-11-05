@@ -37,7 +37,7 @@ const Card = ({ ticket, user, groupBy }) => {
 
 
 <div className='tictitle-style'>
-  {ticket.title.length > 35 ? `${ticket.title.substring(0, 35)}...` : ticket.title}
+  {ticket.title.length > 32 ? `${ticket.title.substring(0, 32)}...` : ticket.title}
 </div>
 
 
