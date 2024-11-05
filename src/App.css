@@ -209,6 +209,19 @@ margin-bottom: 4px;
     font-weight: 500;
 }
 
+
+.feature-icon-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px; /* Default padding */
+    border-radius: 6px;
+    font-size: 14px;
+    color: #989ca4;
+    border: 1px solid #ececec;
+    font-weight: 500;
+}
+
 /* Modify styles for no icon condition */
 .feature-tag.no-icon {
     padding: 6px 10px; /* Adjust padding as needed for no icon */

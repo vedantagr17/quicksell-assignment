@@ -26,19 +26,20 @@ const Card = ({ ticket, user, groupBy }) => {
 <div className="ticket-title">
 
 
-<div className='icon-style'>
+{(groupBy === GROUP_BY.PRIORITY || groupBy === GROUP_BY.USER) && (
+    <div className="icon-style">
+        <IconWrapper 
+            IconComponent={STATUS_MAP[ticket.status].icon} 
+            className="mr-2"
+        />
+    </div>
+)}
 
-        {(groupBy === GROUP_BY.PRIORITY || groupBy === GROUP_BY.USER) && (
-          <IconWrapper 
-          IconComponent={STATUS_MAP[ticket.status].icon} 
-          className="mr-2"
-          />
-        )}
-</div>
 
 <div className='tictitle-style'>
-{ticket.title}
+  {ticket.title.length > 35 ? `${ticket.title.substring(0, 35)}...` : ticket.title}
 </div>
+
 
       </div>
 
@@ -71,7 +72,7 @@ const Card = ({ ticket, user, groupBy }) => {
 
 
         {ticket.tag.map((tag, index) => (
-          <div key={index} className="feature-tag">
+          <div key={index} className="feature-icon-tag">
              <>
             <Circle size={12} fill="#a3a7af" />
           
