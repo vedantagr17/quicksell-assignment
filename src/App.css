@@ -1,0 +1,265 @@
+/* Header */
+.header {
+    position: relative;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: white;
+    padding-left: 20px;
+
+}
+
+.display-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1px solid #e6e7e9;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #373737;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.display-button img {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.display-options {
+    position: absolute;
+    /* top: calc(100% + 8px); */
+    /* top : 20px; */
+    left: 20;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 300px;
+    border: 1px solid #e6e7e9;
+    /* margin-right: 1?px; */
+}
+
+.option-group {
+    display: grid;
+    grid-template-columns: auto 140px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.option-group:last-child {
+    margin-bottom: 0;
+}
+
+.option-group label {
+    color: #8D8D8D;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.option-group select {
+    width: 100%;
+    padding: 6px 12px;
+    border: 1px solid #e6e7e9;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #373737;
+    background-color: white;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("./assets/down.svg");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 24px;
+}
+
+.option-group select:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.display-button:hover {
+    background-color: #f8f8f9;
+}
+
+.option-group select:hover {
+    border-color: #d0d1d5;
+}
+
+
+/* Kanban Board */
+/* .kanban-container { */
+    /* padding: 20px; */
+    /* min-height: 100vh; */
+    /* background-color: #f4f5f8; */
+/* } */
+
+.kanban-board {
+    display: flex;
+    gap: 36px; /* Reduced gap for cleaner look */
+    overflow-x: auto;
+    padding-left: 20px;
+    background-color: #f4f5f8;
+    padding-top: 20px;
+    overflow-x: scroll;
+    /* margin-bottom: px; */
+    padding-bottom: 20px;
+    padding-right: 20px;
+    scrollbar-width: none;
+
+}
+
+/* .ico-style{
+    font-size: 13px;
+} */
+
+.kanban-column {
+    flex: 0 0 320px;
+}
+
+.column-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px 24px;
+    color: #555555; /* Darker shade for contrast */
+    font-weight: 500;
+}
+
+.column-header img {
+    width: 16px;
+    height: 16px;
+}
+
+.column-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* Ticket Card */
+.ticket-card {
+    /* ; */
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 6px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Enhanced shadow */
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    opacity: 0.6;
+}
+
+.ticket-id {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}   
+
+.ticket-title {
+    display: flex;
+    /* flex-direction: row;  */
+    /* align-items: baseline;  */
+    gap: 12px; /* Equivalent to gap-x-3 in Tailwind (12px) */
+    
+    color: #373737;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    /* border-radius: 8px; */
+    /* border-color: red; */
+  }
+  
+.tictitle-style{
+margin-bottom: 4px;
+}
+
+.titfoot-style{
+    align-items: start;
+}
+
+.ticket-footer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.feature-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px; /* Adjusted padding */
+    border-radius: 6px;
+    font-size: 13px;
+    color: #6B6F76;
+    border: 1px solid #dedede;
+}
+
+.user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e2e5e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #595959;
+    position: relative;
+    border: 2px solid #e6e7e9; /* Added border for better contrast */
+}
+
+.status-dot {
+    width: 9px; /* Increased size */
+    height: 9px;
+    border-radius: 50%;
+    background: #ddd;
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    border: 2px solid white;
+}
+
+.status-dot.available {
+    background: green;
+}
+
+.ticket-count {
+    margin-right: auto;
+    padding: 2px 8px;
+    border-radius: 16px;
+    /* font-size: 13px; */
+    color: #6B6F76;
+}
+
+
+/* Icon Wrapper */
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.icon-wrapper img {
+    width: 16px;
+    height: 16px;
+}
+
+
+.icon-style {
+    display: flex;
+    align-items: baseline; /* Align icon with text baseline */
+    margin-top: 6px;
+}
